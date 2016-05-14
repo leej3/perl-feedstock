@@ -5,7 +5,7 @@ Home: http://www.perl.org/
 
 Package license: Perl
 
-Feedstock license: BSD
+Feedstock license: BSD 3-Clause
 
 Summary: The Perl programming language interpreter.
 
@@ -69,9 +69,15 @@ Terminology
 
 Current build status
 ====================
+
 Linux: [![Circle CI](https://circleci.com/gh/conda-forge/perl-feedstock.svg?style=svg)](https://circleci.com/gh/conda-forge/perl-feedstock)
 OSX: [![TravisCI](https://travis-ci.org/conda-forge/perl-feedstock.svg?branch=master)](https://travis-ci.org/conda-forge/perl-feedstock) 
 Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/conda-forge/perl-feedstock?svg=True)](https://ci.appveyor.com/project/conda-forge/perl-feedstock/branch/master)
+
+Current release info
+====================
+Version: [![Anaconda-Server Badge](https://anaconda.org/conda-forge/perl/badges/version.svg)](https://anaconda.org/conda-forge/perl)
+Downloads: [![Anaconda-Server Badge](https://anaconda.org/conda-forge/perl/badges/downloads.svg)](https://anaconda.org/conda-forge/perl)
 
 
 Updating perl-feedstock
