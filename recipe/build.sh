@@ -1,5 +1,23 @@
 #!/bin/bash
-sh Configure -Dusethreads -Duserelocatableinc -Dprefix=$PREFIX -de
+
+if [ -z "$LD_LIBRARY_PATH" ]; then
+    old_ld_library_path="$LD_LIBRARY_PATH"
+fi
+
+export LD_LIBRARY_PATH=$(pwd)
+
+# world-writable files are not allowed
+chmod -R 755 $SRC_DIR
+
+sh Configure -de -Dprefix=$PREFIX -Duserelocatableinc
 make
+
+# change permissions again after building
+chmod -R 755 $SRC_DIR
+
 make test
 make install
+
+if [ ! -z "$old_ld_library_path" ]; then
+    export LD_LIBRARY_PATH="$old_ld_library_path"
+fi
