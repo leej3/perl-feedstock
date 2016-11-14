@@ -7,13 +7,13 @@ fi
 export LD_LIBRARY_PATH=$(pwd)
 
 # world-writable files are not allowed
-chmod -R 755 $SRC_DIR
+chmod -R o-w $SRC_DIR
 
 sh Configure -de -Dprefix=$PREFIX -Duserelocatableinc
 make
 
 # change permissions again after building
-chmod -R 755 $SRC_DIR
+chmod -R o-w $SRC_DIR
 
 make test
 make install
