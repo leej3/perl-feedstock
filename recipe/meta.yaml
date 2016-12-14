@@ -1,4 +1,4 @@
-{% set base_version = "5.20.3" %}
+{% set base_version = "5.22.2" %}
 {% set version = base_version + ".1" %}
 
 
@@ -7,15 +7,15 @@ package:
   version: {{ version }}
 
 source:
-  fn: perl-{{ base_version }}.tar.gz                                                                  # [unix]
-  fn:  strawberry-perl-{{ version }}-32bit-portable.zip                                               # [win]
-  url: http://www.cpan.org/src/5.0/perl-{{ base_version }}.tar.gz                                     # [unix]
-  url:  http://strawberryperl.com/download/5.20.3.1/strawberry-perl-{{ version }}-32bit-portable.zip  # [win]
-  md5: d647d0ea5a7a8194c34759ab9f2610cd                                                               # [unix]
-  md5: 7b62cdfc8087b2a0b6a613a4962eebb4                                                               # [win]
+  fn: perl-{{ base_version }}.tar.gz                                                                      # [unix]
+  fn:  strawberry-perl-{{ version }}-32bit-portable.zip                                                   # [win]
+  url: http://www.cpan.org/src/5.0/perl-{{ base_version }}.tar.gz                                         # [unix]
+  url:  http://strawberryperl.com/download/{{ version }}/strawberry-perl-{{ version }}-32bit-portable.zip # [win]
+  sha1: 2b84a711694be9a10e558c38c9aa43d86c7329a9                                                          # [unix]
+  sha1: 6c750c56a4eccf3b5f77af56e4cee572c360a1c2                                                          # [win]
 
 build:
-  number: 2
+  number: 0
 
 test:
   commands:
