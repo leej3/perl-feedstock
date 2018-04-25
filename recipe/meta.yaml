@@ -17,13 +17,16 @@ source:
     - 0001-_FORTIFY_SOURCE-for-gcc-gt-5-too.patch                                                                 # [unix]
 
 build:
-  number: 0
+  number: 1
 
 requirements:
   build:
     - {{ compiler('c') }}   # [unix]
 
 test:
+  downstreams:
+    - git
+    - autotools
   commands:
     - perl --help
 
