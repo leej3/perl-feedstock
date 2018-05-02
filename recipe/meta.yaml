@@ -22,11 +22,12 @@ build:
 requirements:
   build:
     - {{ compiler('c') }}   # [unix]
+    - make                  # [unix]
 
 test:
   downstreams:
     - git
-    - autotools
+    - automake
   commands:
     - perl --help
 
