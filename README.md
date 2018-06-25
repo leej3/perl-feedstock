@@ -18,9 +18,9 @@ development projects.
 Current build status
 ====================
 
+[![Linux](https://img.shields.io/circleci/project/github/conda-forge/perl-feedstock/master.svg?label=Linux)](https://circleci.com/gh/conda-forge/perl-feedstock)
+[![OSX](https://img.shields.io/travis/conda-forge/perl-feedstock/master.svg?label=macOS)](https://travis-ci.org/conda-forge/perl-feedstock)
 [![Windows](https://img.shields.io/appveyor/ci/conda-forge/perl-feedstock/master.svg?label=Windows)](https://ci.appveyor.com/project/conda-forge/perl-feedstock/branch/master)
-![Linux disabled](https://img.shields.io/badge/linux-disabled-lightgrey.svg)
-![OSX disabled](https://img.shields.io/badge/OSX-disabled-lightgrey.svg)
 
 Current release info
 ====================
