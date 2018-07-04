@@ -24,9 +24,9 @@ requirements:
     - make                  # [unix]
 
 test:
-  downstreams:
-    - git
-    - automake
+  # downstreams:
+  #   - git
+  #   - automake
   commands:
     - perl --help
 
