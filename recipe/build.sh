@@ -24,7 +24,7 @@ fi
 # alternative is to pass -Dusecrosscompile but that prevents
 # all Configure/run checks which we also do not want.
 # remove this if after the gcc7 migration
-if [[ "$CF_COMPILER_STACK" == "comp7" ]]; then
+if [[ "$PKG_BUILDNUM" == "1000" ]]; then 
   if [[ -n ${CONDA_BUILD_SYSROOT} ]]; then
     _config_args+=("-Dsysroot=${CONDA_BUILD_SYSROOT}")
   else
