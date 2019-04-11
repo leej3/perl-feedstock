@@ -51,3 +51,8 @@ chmod -R o-w "${SRC_DIR}"
 # https://rt.perl.org/Public/Bug/Display.html?id=128020
 # make test
 make install
+
+# Replace BUILD_PREFIX by PREFIX as CC, CFLAGS etc need to be properly set to be usable by ExtUtils::MakeMaker module
+sed -i.bak "s|${BUILD_PREFIX}|${PREFIX}|g" $PREFIX/lib/*/*/Config_heavy.pl
+sed -i.bak "s|${BUILD_PREFIX}|${PREFIX}|g" $PREFIX/lib/*/*/Config.pm
+rm $PREFIX/lib/*/*/Config_heavy.pl.bak $PREFIX/lib/*/*/Config.pm.bak
