@@ -53,12 +53,12 @@ chmod -R o-w "${SRC_DIR}"
 make install
 
 # Replace hard-coded BUILD_PREFIX by value from env as CC, CFLAGS etc need to be properly set to be usable by ExtUtils::MakeMaker module
-sed -i.bak "/local \*/i use File::Basename;\nmy \$compilerroot = dirname(\$ENV{'CC'}).\"/../\";" $PREFIX/lib/*/*/Config_heavy.pl
+sed -i.bak "s|\(local \*.*\)|use File::Basename; my \$compilerroot = dirname(\$ENV{'CC'}).\"\/..\/\"; \1|g" $PREFIX/lib/*/*/Config_heavy.pl
 sed -i.bak "s|_ = <<'\!END\!'|_ = <<\"\!END\!\"|g" $PREFIX/lib/*/*/Config_heavy.pl
 sed -i.bak "s|conda@|conda\\\@|g" $PREFIX/lib/*/*/Config_heavy.pl
 sed -i.bak "s|${BUILD_PREFIX}|\$compilerroot|g" $PREFIX/lib/*/*/Config_heavy.pl
 
-sed -i.bak "/tie returns the object/i use File::Basename;\nmy \$compilerroot = dirname(\$ENV{'CC'}).\"/../\";" $PREFIX/lib/*/*/Config.pm
+sed -i.bak "s|\(.*tie returns the object.*\)|use File::Basename; my \$compilerroot = dirname(\$ENV{'CC'}).\"\/..\/\"; \1|g" $PREFIX/lib/*/*/Config.pm
 sed -i.bak "s|cc => '\(.*\)'|cc => \"\1\"|g" $PREFIX/lib/*/*/Config.pm
 sed -i.bak "s|libpth => '\(.*\)'|libpth => \"\1\"|g" $PREFIX/lib/*/*/Config.pm
 sed -i.bak "s|${BUILD_PREFIX}|\$compilerroot|g" $PREFIX/lib/*/*/Config.pm
