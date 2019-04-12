@@ -53,7 +53,7 @@ chmod -R o-w "${SRC_DIR}"
 make install
 
 # Replace hard-coded BUILD_PREFIX by value from env as CC, CFLAGS etc need to be properly set to be usable by ExtUtils::MakeMaker module
-(cd $PREFIX/lib/5*/x*/ && patch -p1) < $RECIPE_DIR/dynamic_config.patch
+(cd $PREFIX/lib/5*/*-thread-*/ && patch -p1) < $RECIPE_DIR/dynamic_config.patch
 sed -i.bak "s|conda@|conda\\\@|g" $PREFIX/lib/*/*/Config_heavy.pl
 sed -i.bak "s|${BUILD_PREFIX}|\$compilerroot|g" $PREFIX/lib/*/*/Config_heavy.pl
 
