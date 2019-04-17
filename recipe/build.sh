@@ -51,3 +51,14 @@ chmod -R o-w "${SRC_DIR}"
 # https://rt.perl.org/Public/Bug/Display.html?id=128020
 # make test
 make install
+
+# Replace hard-coded BUILD_PREFIX by value from env as CC, CFLAGS etc need to be properly set to be usable by ExtUtils::MakeMaker module
+(cd $PREFIX/lib/5*/*-thread-*/ && patch -p1) < $RECIPE_DIR/dynamic_config.patch
+sed -i.bak "s|conda@|conda\\\@|g" $PREFIX/lib/*/*/Config_heavy.pl
+sed -i.bak "s|${BUILD_PREFIX}|\$compilerroot|g" $PREFIX/lib/*/*/Config_heavy.pl
+
+sed -i.bak "s|cc => '\(.*\)'|cc => \"\1\"|g" $PREFIX/lib/*/*/Config.pm
+sed -i.bak "s|libpth => '\(.*\)'|libpth => \"\1\"|g" $PREFIX/lib/*/*/Config.pm
+sed -i.bak "s|${BUILD_PREFIX}|\$compilerroot|g" $PREFIX/lib/*/*/Config.pm
+
+rm $PREFIX/lib/*/*/Config_heavy.pl.bak $PREFIX/lib/*/*/Config.pm.bak
