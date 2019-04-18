@@ -61,8 +61,9 @@ sed -i.bak "s|cc => '\(.*\)'|cc => \"\1\"|g" $PREFIX/lib/*/*/Config.pm
 sed -i.bak "s|libpth => '\(.*\)'|libpth => \"\1\"|g" $PREFIX/lib/*/*/Config.pm
 sed -i.bak "s|${BUILD_PREFIX}|\$compilerroot|g" $PREFIX/lib/*/*/Config.pm
 
-# 2 more seds for osx:
+# 3 more seds for osx:
 sed -i.bak "s|vsts@|vsts\\\@|g" $PREFIX/lib/*/*/Config_heavy.pl
+sed -i.bak "s|\\\c|\\\\\\\c|g" $PREFIX/lib/*/*/Config_heavy.pl
 sed -i.bak "s|DPERL_SBRK_VIA_MALLOC \$ccflags|DPERL_SBRK_VIA_MALLOC \\\\\$ccflags|g" $PREFIX/lib/*/*/Config_heavy.pl
 
 rm $PREFIX/lib/*/*/Config_heavy.pl.bak $PREFIX/lib/*/*/Config.pm.bak
