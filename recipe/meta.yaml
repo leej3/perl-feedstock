@@ -34,6 +34,7 @@ about:
   home: http://www.perl.org/
   license: Perl Artistic
   license_family: Other
+  license_file: Copying
   summary: "The Perl programming language interpreter."
   description: |
     Perl 5 is a highly capable, feature-rich programming language with over 29
