@@ -10,10 +10,10 @@ source:
   url: http://www.cpan.org/src/5.0/perl-{{ unix_version }}.tar.gz                                                 # [unix]
   url: http://strawberryperl.com/download/{{ win_version }}/strawberry-perl-{{ win_version }}-64bit-portable.zip  # [win64]
   url: http://strawberryperl.com/download/{{ win_version }}/strawberry-perl-{{ win_version }}-32bit-portable.zip  # [win32]
-  sha256: efeb1ce1f10824190ad1cadbcccf6fdb8a5d37007d0100d2d9ae5f2b5900c0b4                                        # [unix]
+  sha256: 32e04c8bb7b1aecb2742a7f7ac0eabac100f38247352a73ad7fa104e39e7406f                                        # [unix]
   # sha1 hashes published at: http://strawberryperl.com/releases.html
-  sha1: ac3ce102081ac6f9b3b43d81c30ac77b08493eff                                                                  # [win64]
-  sha1: 81b031730c5963a78059f2b7ebeb2e14a2a4c3e2                                                                  # [win32]
+  sha1: 487a15ab60bdc41ed72626b6b4fb260d755d4a98                                                                  # [win64]
+  sha1: c4211d4651620506412f757ea221ee6088f2ed91                                                                  # [win32]
 
 build:
   number: 1000
