@@ -33,7 +33,10 @@ test:
 about:
   home: http://www.perl.org/
   license: Artistic-1.0-Perl
-  license_file: LICENSE
+  license_file:
+    - Artistic  # [unix]
+    - Copying   # [unix]
+    - licenses  # [win]
   summary: "The Perl programming language interpreter."
   description: |
     Perl 5 is a highly capable, feature-rich programming language with over 29
