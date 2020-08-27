@@ -16,7 +16,7 @@ source:
   sha1: c4211d4651620506412f757ea221ee6088f2ed91                                                                  # [win32]
 
 build:
-  number: 1000
+  number: 0
 
 requirements:
   build:
