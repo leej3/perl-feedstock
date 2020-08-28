@@ -1,4 +1,4 @@
-{% set unix_version = "5.26.2" %}
+{% set unix_version = "5.30.3" %}
 {% set win_version = unix_version + ".1" %}
 
 package:
@@ -10,13 +10,13 @@ source:
   url: http://www.cpan.org/src/5.0/perl-{{ unix_version }}.tar.gz                                                 # [unix]
   url: http://strawberryperl.com/download/{{ win_version }}/strawberry-perl-{{ win_version }}-64bit-portable.zip  # [win64]
   url: http://strawberryperl.com/download/{{ win_version }}/strawberry-perl-{{ win_version }}-32bit-portable.zip  # [win32]
-  sha256: 572f9cea625d6062f8a63b5cee9d3ee840800a001d2bb201a41b9a177ab7f70d                                        # [unix]
+  sha256: 32e04c8bb7b1aecb2742a7f7ac0eabac100f38247352a73ad7fa104e39e7406f                                        # [unix]
   # sha1 hashes published at: http://strawberryperl.com/releases.html
-  sha1: 7996609176451c54864f700ffa299ee81712d8bd                                                                  # [win64]
-  sha1: 73564a7cef397c4e0da93612c00fa5f482e652b3                                                                  # [win32]
+  sha1: 487a15ab60bdc41ed72626b6b4fb260d755d4a98                                                                  # [win64]
+  sha1: c4211d4651620506412f757ea221ee6088f2ed91                                                                  # [win32]
 
 build:
-  number: 1006
+  number: 0
 
 requirements:
   build:
@@ -32,8 +32,12 @@ test:
 
 about:
   home: http://www.perl.org/
-  license: Perl Artistic
-  license_family: Other
+  license: Artistic-1.0-Perl
+  license_file:
+    - Artistic  # [unix]
+    - Copying   # [unix]
+    - licenses/perl/Artistic  # [win]
+    - licenses/perl/Copying  # [win]
   summary: "The Perl programming language interpreter."
   description: |
     Perl 5 is a highly capable, feature-rich programming language with over 29
