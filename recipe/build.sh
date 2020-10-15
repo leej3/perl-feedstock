@@ -1,5 +1,9 @@
 #!/bin/bash
 
+if [[ "$MACOSX_DEPLOYMENT_TARGET" == "11.0" ]]; then
+  export MACOSX_DEPLOYMENT_TARGET=10.16
+fi
+
 # world-writable files are not allowed
 chmod -R o-w "${SRC_DIR}"
 
