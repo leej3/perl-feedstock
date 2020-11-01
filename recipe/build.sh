@@ -74,4 +74,6 @@ sed -i.bak "s|DPERL_SBRK_VIA_MALLOC \$ccflags|DPERL_SBRK_VIA_MALLOC \\\\\$ccflag
 
 rm $PREFIX/lib/*/*/Config_heavy.pl.bak $PREFIX/lib/*/*/Config.pm.bak
 
-grep -Iir "\-arch x86_64" $PREFIX
+if [[ "$target_platform" == "arm64" ]]; then
+  sed -i '' 's/-arch x86_63 -arch arm64//g' $PREFIX/lib/$PKG_VERSION/darwin-thread-multi-2level/Config_heavy.pl
+fi
