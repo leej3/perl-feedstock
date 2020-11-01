@@ -73,3 +73,5 @@ sed -i.bak "s|\\\c|\\\\\\\c|g" $PREFIX/lib/*/*/Config_heavy.pl
 sed -i.bak "s|DPERL_SBRK_VIA_MALLOC \$ccflags|DPERL_SBRK_VIA_MALLOC \\\\\$ccflags|g" $PREFIX/lib/*/*/Config_heavy.pl
 
 rm $PREFIX/lib/*/*/Config_heavy.pl.bak $PREFIX/lib/*/*/Config.pm.bak
+
+grep -Iir "\-arch x86_64" $PREFIX
