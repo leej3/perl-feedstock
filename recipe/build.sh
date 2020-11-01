@@ -10,7 +10,7 @@ if [[ "$target_platform" == osx-* ]]; then
     CFLAGS="${CFLAGS} -D_DARWIN_FEATURE_CLOCK_GETTIME=0"
   fi
   CCFLAGS="${CFLAGS} -fno-common -DPERL_DARWIN -no-cpp-precomp -Werror=partial-availability -D_DARWIN_FEATURE_CLOCK_GETTIME=0 -fno-strict-aliasing -pipe -fstack-protector-strong -DPERL_USE_SAFE_PUTENV ${ARCHFLAGS}"
-else if [[ "$target_platform" == linux-* ]]; then
+elif [[ "$target_platform" == linux-* ]]; then
   CCFLAGS="${CFLAGS} -D_REENTRANT -D_GNU_SOURCE -fwrapv -fno-strict-aliasing -pipe -fstack-protector-strong -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -D_FORTIFY_SOURCE=2"
 fi
 
