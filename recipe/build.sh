@@ -1,7 +1,8 @@
 #!/bin/bash
 
-if [[ "$MACOSX_DEPLOYMENT_TARGET" == "11.0" ]]; then
-  export MACOSX_DEPLOYMENT_TARGET=10.16
+if [[ "$target_platform" == "osx-64" && "$target_platform" == "osx-arm64" ]]; then
+  ARCHFLAGS="-arch x86_64 -arch arm64"
+  export MACOSX_DEPLOYMENT_TARGET=10.9
 fi
 
 # world-writable files are not allowed
@@ -12,9 +13,10 @@ _config_args+=(-Dprefix="${PREFIX}")
 _config_args+=(-Dusethreads)
 _config_args+=(-Duserelocatableinc)
 _config_args+=(-Dcccdlflags="-fPIC")
-_config_args+=(-Dldflags="${LDFLAGS}")
+_config_args+=(-Dldflags="${LDFLAGS} ${ARCHFLAGS}")
 # .. ran into too many problems with '.' not being on @INC:
 _config_args+=(-Ddefault_inc_excludes_dot=n)
+_config_args+=(-Dccflags"${CFLAGS} ${ARCHFLAGS}")
 if [[ -n "${GCC:-${CC}}" ]]; then
   _config_args+=("-Dcc=${GCC:-${CC}}")
 fi
