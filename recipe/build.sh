@@ -16,7 +16,7 @@ _config_args+=(-Dcccdlflags="-fPIC")
 _config_args+=(-Dldflags="${LDFLAGS} ${ARCHFLAGS}")
 # .. ran into too many problems with '.' not being on @INC:
 _config_args+=(-Ddefault_inc_excludes_dot=n)
-_config_args+=(-Dccflags"${CFLAGS} ${ARCHFLAGS}")
+_config_args+=(-Dccflags="${CFLAGS} ${ARCHFLAGS}")
 if [[ -n "${GCC:-${CC}}" ]]; then
   _config_args+=("-Dcc=${GCC:-${CC}}")
 fi
