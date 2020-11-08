@@ -1,5 +1,19 @@
 #!/bin/bash
 
+if [[ "$build_platform" == "osx-64" && "$target_platform" == "osx-arm64" ]]; then
+  ARCHFLAGS="-arch x86_64 -arch arm64"
+  export MACOSX_DEPLOYMENT_TARGET=10.9
+fi
+
+if [[ "$target_platform" == osx-* ]]; then
+  if [[ "$target_platform" == osx-64 ]]; then
+    CFLAGS="${CFLAGS} -D_DARWIN_FEATURE_CLOCK_GETTIME=0"
+  fi
+  CCFLAGS="${CFLAGS} -fno-common -DPERL_DARWIN -no-cpp-precomp -Werror=partial-availability -D_DARWIN_FEATURE_CLOCK_GETTIME=0 -fno-strict-aliasing -pipe -fstack-protector-strong -DPERL_USE_SAFE_PUTENV ${ARCHFLAGS} ${CPPFLAGS}"
+elif [[ "$target_platform" == linux-* ]]; then
+  CCFLAGS="${CFLAGS} -D_REENTRANT -D_GNU_SOURCE -fwrapv -fno-strict-aliasing -pipe -fstack-protector-strong -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -D_FORTIFY_SOURCE=2"
+fi
+
 # world-writable files are not allowed
 chmod -R o-w "${SRC_DIR}"
 
@@ -8,9 +22,13 @@ _config_args+=(-Dprefix="${PREFIX}")
 _config_args+=(-Dusethreads)
 _config_args+=(-Duserelocatableinc)
 _config_args+=(-Dcccdlflags="-fPIC")
-_config_args+=(-Dldflags="${LDFLAGS}")
+_config_args+=(-Dldflags="${LDFLAGS} ${ARCHFLAGS}")
 # .. ran into too many problems with '.' not being on @INC:
 _config_args+=(-Ddefault_inc_excludes_dot=n)
+
+if [[ -n "${CCFLAGS}" ]]; then
+  _config_args+=(-Dccflags="${CCFLAGS}")
+fi
 if [[ -n "${GCC:-${CC}}" ]]; then
   _config_args+=("-Dcc=${GCC:-${CC}}")
 fi
@@ -26,18 +44,7 @@ fi
 # linking to system libraries (like GDBM, which is GPL). An
 # alternative is to pass -Dusecrosscompile but that prevents
 # all Configure/run checks which we also do not want.
-# remove this if after the gcc7 migration
-if [[ ! ${c_compiler} =~ .*toolchain.* ]]; then
-  if [[ -n ${CONDA_BUILD_SYSROOT} ]]; then
-    _config_args+=("-Dsysroot=${CONDA_BUILD_SYSROOT}")
-  else
-    if [[ -n ${HOST} ]] && [[ -n ${CC} ]]; then
-      _config_args+=("-Dsysroot=$(dirname $(dirname ${CC}))/$(${CC} -dumpmachine)/sysroot")
-    else
-      _config_args+=("-Dsysroot=/usr")
-    fi
-  fi
-fi
+_config_args+=("-Dsysroot=${CONDA_BUILD_SYSROOT}")
 
 ./Configure -de "${_config_args[@]}"
 make
@@ -66,3 +73,7 @@ sed -i.bak "s|\\\c|\\\\\\\c|g" $PREFIX/lib/*/*/Config_heavy.pl
 sed -i.bak "s|DPERL_SBRK_VIA_MALLOC \$ccflags|DPERL_SBRK_VIA_MALLOC \\\\\$ccflags|g" $PREFIX/lib/*/*/Config_heavy.pl
 
 rm $PREFIX/lib/*/*/Config_heavy.pl.bak $PREFIX/lib/*/*/Config.pm.bak
+
+if [[ "$target_platform" == "arm64" ]]; then
+  sed -i '' 's/-arch x86_64 -arch arm64//g' $PREFIX/lib/$PKG_VERSION/darwin-thread-multi-2level/Config_heavy.pl
+fi
