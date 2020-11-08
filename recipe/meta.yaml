@@ -1,4 +1,4 @@
-{% set unix_version = "5.30.3" %}
+{% set unix_version = "5.32.0" %}
 {% set win_version = unix_version + ".1" %}
 
 package:
@@ -10,13 +10,13 @@ source:
   url: http://www.cpan.org/src/5.0/perl-{{ unix_version }}.tar.gz                                                 # [unix]
   url: http://strawberryperl.com/download/{{ win_version }}/strawberry-perl-{{ win_version }}-64bit-portable.zip  # [win64]
   url: http://strawberryperl.com/download/{{ win_version }}/strawberry-perl-{{ win_version }}-32bit-portable.zip  # [win32]
-  sha256: 32e04c8bb7b1aecb2742a7f7ac0eabac100f38247352a73ad7fa104e39e7406f                                        # [unix]
+  sha256: efeb1ce1f10824190ad1cadbcccf6fdb8a5d37007d0100d2d9ae5f2b5900c0b4                                        # [unix]
   # sha1 hashes published at: http://strawberryperl.com/releases.html
-  sha1: 487a15ab60bdc41ed72626b6b4fb260d755d4a98                                                                  # [win64]
-  sha1: c4211d4651620506412f757ea221ee6088f2ed91                                                                  # [win32]
+  sha1: 25cc36aa98e5ec6a5d507a2a7a6e39eb655795f3                                                                  # [win64]
+  sha1: 61b204137c6c4277b5155eb5cc0514e9e4674625                                                                  # [win32]
 
 build:
-  number: 1
+  number: 0
 
 requirements:
   build:
@@ -52,3 +52,4 @@ extra:
     - jakirkham
     - msarahan
     - mingwandroid
+    - isuruf
