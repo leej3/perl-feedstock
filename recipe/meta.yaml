@@ -16,12 +16,24 @@ source:
   sha1: 61b204137c6c4277b5155eb5cc0514e9e4674625                                                                  # [win32]
 
 build:
+{% if bootstrapping == 'yes' %}
+  # Please increment by two
   number: 0
+  string: h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}_bootstrapping
+{% else %}
+  # Keep above the number of the _bootstrapping package
+  number: 1
+{% endif %}
+  detect_binary_files_with_prefix: false
+  script_env:
+    - BOOTSTRAPPING={{ bootstrapping }}
 
 requirements:
   build:
     - {{ compiler('c') }}   # [unix]
+{% if bootstrapping != 'yes' %}
     - make                  # [unix]
+{% endif %}
 
 test:
   # downstreams:
